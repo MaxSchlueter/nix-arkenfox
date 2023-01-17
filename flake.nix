@@ -1,15 +1,15 @@
 {
-  description = "Arkenfox user.js integration";
+  description = "Arkenfox user.js home-manager module";
 
   # Nixpkgs / NixOS version to use.
   inputs.nixpkgs.url = "nixpkgs/nixos-22.11";
 
   inputs.arkenfox-userjs = {
-    url = "github:arkenfox/user.js";
+    url = "github:arkenfox/user.js/108.0";
     flake = false;
   };
 
-  outputs = { self, nixpkgs, arkenfox-userjs }:
+  outputs = { self, nixpkgs, arkenfox-userjs }@inputs:
     let
       # System types to support.
       supportedSystems =
@@ -55,5 +55,6 @@
       packages =
         forAllSystems (system: { inherit (nixpkgsFor.${system}) prefsCleaner; });
 
+      hmModule = import ./hm.nix inputs;
     };
 }

@@ -12,6 +12,7 @@
       },
       "original": {
         "owner": "arkenfox",
+        "ref": "108.0",
         "repo": "user.js",
         "type": "github"
       }
