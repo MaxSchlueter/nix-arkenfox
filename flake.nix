@@ -2,7 +2,7 @@
   description = "Arkenfox user.js home-manager module";
 
   # Nixpkgs / NixOS version to use.
-  inputs.nixpkgs.url = "nixpkgs/nixos-22.11";
+  inputs.nixpkgs.url = "nixpkgs/nixpkgs-unstable";
 
   inputs.arkenfox-userjs = {
     url = "github:arkenfox/user.js/118.0";
@@ -37,10 +37,8 @@
 
             src = arkenfox-userjs;
 
-            patches = [
-              ./do-not-auto-update.patch
-              ./do-not-change-directory.patch
-            ];
+            patches =
+              [ ./do-not-auto-update.patch ./do-not-change-directory.patch ];
 
             installPhase = ''
               mkdir -p $out/bin
@@ -52,8 +50,8 @@
       };
 
       # Provide some binary packages for selected system types.
-      packages =
-        forAllSystems (system: { inherit (nixpkgsFor.${system}) prefsCleaner; });
+      packages = forAllSystems
+        (system: { inherit (nixpkgsFor.${system}) prefsCleaner; });
 
       hmModule = import ./hm.nix inputs;
     };
