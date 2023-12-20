@@ -5,7 +5,7 @@
   inputs.nixpkgs.url = "nixpkgs/nixpkgs-unstable";
 
   inputs.arkenfox-userjs = {
-    url = "github:arkenfox/user.js/118.0";
+    url = "github:arkenfox/user.js/119.0";
     flake = false;
   };
 
